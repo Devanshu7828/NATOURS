@@ -67,7 +67,7 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
     },
   ]);
 
-  console.log(stats);
+  // console.log(stats);
   if (stats.length > 0) {
     await Tour.findByIdAndUpdate(tourId, {
       ratingsQuantity: stats[0].nRating,
@@ -91,7 +91,7 @@ reviewSchema.index({tour:1,user:1},{unique:true});
 reviewSchema.pre(/^findOneAnd/, async function (next) {
   //goal is to access the current documet because in thease method we dont point to current document in this point to current query so we have to execute query first to get the documet
   this.r = await this.findOne();
-  console.log(this.r);
+  // console.log(this.r);
 
   next();
 });

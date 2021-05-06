@@ -16,7 +16,8 @@ const ejsexpress = require("express-ejs-layouts");
 const PUG = require("pug");
 var bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const methodOverride= require("method-override")
+const methodOverride = require("method-override");
+const compression=require("compression")
 // ROUTES
 const tours = require("./routes/tourRoutes");
 const users = require("./routes/userRoutes");
@@ -57,7 +58,7 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-
+app.use(compression());
 //Set security HTTP headers
 app.use(
   helmet({
