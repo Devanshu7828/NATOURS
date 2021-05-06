@@ -6,7 +6,7 @@ export const signup = async (name, email, password, confirmPassword) => {
   try {
     const res = await axios({
       method: "POST",
-      url: "/api/v1/users/signup",
+      url: "https://natours-tour-app-nodejs.herokuapp.com/api/v1/users/signup",
       data: {
         name,
         email,

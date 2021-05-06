@@ -30,8 +30,8 @@ export const updateSetings = async (data, type) => {
   try {
     const url =
       type === "password"
-        ? "/api/v1/users/updateMyPassword"
-        : "/api/v1/users/updateMe";
+        ? "https://natours-tour-app-nodejs.herokuapp.com/api/v1/users/updateMyPassword"
+        : "https://natours-tour-app-nodejs.herokuapp.com/api/v1/users/updateMe";
     const res = await axios({
       method: "PATCH",
       url,
