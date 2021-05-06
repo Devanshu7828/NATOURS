@@ -8505,7 +8505,7 @@ var login = /*#__PURE__*/function () {
             return (0, _axios.default)({
               method: "POST",
               // url: "/api/v1/users/login",
-              url: "https://natours-tour-app-nodejs.herokuapp.com/api/v1/users/login",
+              url: "/api/v1/users/login",
               data: {
                 email: email,
                 password: password
@@ -8556,7 +8556,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: "GET",
-              url: "https://natours-tour-app-nodejs.herokuapp.com/api/v1/users/logout"
+              url: "/api/v1/users/logout"
             });
 
           case 3:
