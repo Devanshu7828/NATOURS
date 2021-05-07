@@ -9096,6 +9096,7 @@ if (signupForm) signupForm.addEventListener("submit", function (e) {
 if (logOutBtn) logOutBtn.addEventListener("click", _login.logout);
 if (userDataForm) userDataForm.addEventListener("submit", function (e) {
   e.preventDefault();
+  document.querySelector(".btn--green").textContent = "Updating...";
   var form = new FormData();
   form.append("name", document.getElementById("name").value);
   form.append("email", document.getElementById("email").value);
