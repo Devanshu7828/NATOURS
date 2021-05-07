@@ -8547,7 +8547,7 @@ var login = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://localhost:3000/api/v1/users/login',
+              url: '/api/v1/users/login',
               data: {
                 email: email,
                 password: password
@@ -8599,7 +8599,7 @@ var logout = /*#__PURE__*/function () {
             _context2.next = 3;
             return (0, _axios.default)({
               method: 'GET',
-              url: 'http://localhost:3000/api/v1/users/logout'
+              url: '/api/v1/users/logout'
             });
 
           case 3:
@@ -8657,7 +8657,7 @@ var signup = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: "POST",
-              url: "http://localhost:3000/api/v1/users/signup",
+              url: "/api/v1/users/signup",
               data: {
                 name: name,
                 email: email,
