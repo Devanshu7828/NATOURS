@@ -60,12 +60,12 @@ app.use(
 app.use(morgan("dev"));
 app.use(compression());
 //Set security HTTP headers
-app.use(
-  helmet({
-    contentSecurityPolicy:
-      process.env.NODE_ENV === "production" ? undefined : false,
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy:
+//       process.env.NODE_ENV === "production" ? undefined : false,
+//   })
+// );
 
 //Limit requests from same api
 const limiter = rateLimit({
