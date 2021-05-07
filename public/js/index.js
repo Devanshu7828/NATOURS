@@ -3,7 +3,7 @@ import { displayMap } from "./mapbox";
 import { login, logout } from "./login";
 import { signup } from "./signup";
 import { updateSettings } from "./updateSetting";
-// import { bookTour } from './stripe';
+import { bookTour } from './stripe';
 import { showAlert } from "./alert";
 
 // DOM ELEMENTS
