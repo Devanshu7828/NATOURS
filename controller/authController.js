@@ -229,7 +229,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   }
   //3) if currect update the password
   user.password = req.body.password;
-  user.confirmPassword = req.body.confirmPassword;
+  user.confirmPassword = req.body.passwordConfirm;
   await user.save();
   //4)log user in, send jwt
   createAndSendToken(user, 200, res);

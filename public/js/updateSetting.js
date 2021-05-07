@@ -25,8 +25,7 @@ import { showAlert } from "./alert";
 //   }
 // };
 // type is password or data
-export const updateSetings = async (data, type) => {
-  console.log(name, email);
+export const updateSettings = async (data, type) => {
   try {
     const url =
       type === "password"

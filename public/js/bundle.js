@@ -8704,7 +8704,7 @@ exports.signup = signup;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.updateSetings = void 0;
+exports.updateSettings = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8738,24 +8738,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //   }
 // };
 // type is password or data
-var updateSetings = /*#__PURE__*/function () {
+var updateSettings = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(data, type) {
     var url, res;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log(name, email);
-            _context.prev = 1;
+            _context.prev = 0;
             url = type === "password" ? "/api/v1/users/updateMyPassword" : "/api/v1/users/updateMe";
-            _context.next = 5;
+            _context.next = 4;
             return (0, _axios.default)({
               method: "PATCH",
               url: url,
               data: data
             });
 
-          case 5:
+          case 4:
             res = _context.sent;
 
             if (res.data.sucess === "success") {
@@ -8765,28 +8764,28 @@ var updateSetings = /*#__PURE__*/function () {
               }, 1000);
             }
 
-            _context.next = 12;
+            _context.next = 11;
             break;
 
-          case 9:
-            _context.prev = 9;
-            _context.t0 = _context["catch"](1);
+          case 8:
+            _context.prev = 8;
+            _context.t0 = _context["catch"](0);
             (0, _alert.showAlert)("error", _context.t0.response.data.message);
 
-          case 12:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[1, 9]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
-  return function updateSetings(_x, _x2) {
+  return function updateSettings(_x, _x2) {
     return _ref.apply(this, arguments);
   };
 }();
 
-exports.updateSetings = updateSetings;
+exports.updateSettings = updateSettings;
 },{"axios":"../../node_modules/axios/index.js","./alert":"alert.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -9175,7 +9174,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51984" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53051" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
