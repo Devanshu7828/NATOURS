@@ -1,7 +1,6 @@
 const path = require("path");
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const port = process.env.PORT || 3000;
 const morgan = require("morgan");
 const AppError = require("./utils/appError");
@@ -17,13 +16,18 @@ const PUG = require("pug");
 var bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
-const compression=require("compression")
+const compression = require("compression");
 // ROUTES
 const tours = require("./routes/tourRoutes");
 const users = require("./routes/userRoutes");
 const reviews = require("./routes/reviewRoutes");
 const viewRoutes = require("./routes/viewRoutes");
-const bookingRoutes=require("./routes/bookingRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
+const { Server } = require("http");
+
+//Start express app
+const app = express();
+app.enable("trust-proxy");
 // database
 require("./database/connection");
 
@@ -34,7 +38,7 @@ require("./database/connection");
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
-app.use(methodOverride('_method'))
+app.use(methodOverride("_method"));
 //Serving static files
 app.use(express.static(path.join(__dirname, "public")));
 //SETING PUG TEMPLATE ENGINE
@@ -102,4 +106,19 @@ app.listen(port, () => {
   console.log(
     `server is runnig in ${process.env.NODE_ENV} mode on port ${port}`
   );
+});
+
+process.on("unhandledRejection", (err) => {
+  console.log("UNHANDLE REJECTION! SHUTTING DOWN...");
+  console.log(err.name, err.message);
+  Server.close(() => {
+    process.exit(1);
+  });
+});
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM RECEIVED SHUTTING DOWN GRACEFULLY");
+  Server.close(() => {
+    console.log('process terminated');
+  });
 });
