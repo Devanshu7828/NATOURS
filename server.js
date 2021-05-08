@@ -102,23 +102,23 @@ app.use("*", (req, res, next) => {
 app.use(errorHandler);
 
 //server
-app.listen(port, () => {
+const server=app.listen(port, () => {
   console.log(
     `server is runnig in ${process.env.NODE_ENV} mode on port ${port}`
   );
 });
 
-process.on("unhandledRejection", (err) => {
-  console.log("UNHANDLE REJECTION! SHUTTING DOWN...");
+process.on('unhandledRejection', err => {
+  console.log('UNHANDLED REJECTION! 💥 Shutting down...');
   console.log(err.name, err.message);
-  Server.close(() => {
+  server.close(() => {
     process.exit(1);
   });
 });
 
-process.on("SIGTERM", () => {
-  console.log("SIGTERM RECEIVED SHUTTING DOWN GRACEFULLY");
-  Server.close(() => {
-    console.log('process terminated');
+process.on('SIGTERM', () => {
+  console.log('👋 SIGTERM RECEIVED. Shutting down gracefully');
+  server.close(() => {
+    console.log('💥 Process terminated!');
   });
 });
