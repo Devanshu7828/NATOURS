@@ -17,6 +17,7 @@ var bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override");
 const compression = require("compression");
+const cors = require("cors");
 // ROUTES
 const tours = require("./routes/tourRoutes");
 const users = require("./routes/userRoutes");
@@ -32,13 +33,21 @@ app.enable("trust-proxy");
 require("./database/connection");
 
 // GLOBAL MIDDLEWARES
-
+// implementing cookieParser
+app.use(cors());
+//ACCESS CONTROL ALLOW ORING HEADER TO EVERYTHING
+//api.nators.com ,frontend natours.com
+// app.use(cors({
+//   origin:'https://www.natours.com' //front end origin
+// }))
+app.options('*',cors());
 // Body parse, reading data from Body into req.body
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
 app.use(methodOverride("_method"));
+
 //Serving static files
 app.use(express.static(path.join(__dirname, "public")));
 //SETING PUG TEMPLATE ENGINE
@@ -102,23 +111,23 @@ app.use("*", (req, res, next) => {
 app.use(errorHandler);
 
 //server
-const server=app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(
     `server is runnig in ${process.env.NODE_ENV} mode on port ${port}`
   );
 });
 
-process.on('unhandledRejection', err => {
-  console.log('UNHANDLED REJECTION! 💥 Shutting down...');
+process.on("unhandledRejection", (err) => {
+  console.log("UNHANDLED REJECTION! 💥 Shutting down...");
   console.log(err.name, err.message);
   server.close(() => {
     process.exit(1);
   });
 });
 
-process.on('SIGTERM', () => {
-  console.log('👋 SIGTERM RECEIVED. Shutting down gracefully');
+process.on("SIGTERM", () => {
+  console.log("👋 SIGTERM RECEIVED. Shutting down gracefully");
   server.close(() => {
-    console.log('💥 Process terminated!');
+    console.log("💥 Process terminated!");
   });
 });
