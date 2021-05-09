@@ -43,11 +43,11 @@ app.use(cors());
 // }))
 app.options("*", cors());
 //STRIPE WEBHOOK CHECKOUT
-app.post(
-  "webhook-checkout",
-  bodyParser.raw({ type: "application/json" }),
-  bookingController.webhookCheckout
-);
+// app.post(
+//   "webhook-checkout",
+//   bodyParser.raw({ type: "application/json" }),
+//   bookingController.webhookCheckout
+// );
 // Body parse, reading data from Body into req.body
 // app.use(bodyParser.json());
 app.use(express.json({ limit: "10kb" }));
