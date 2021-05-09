@@ -24,6 +24,7 @@ const users = require("./routes/userRoutes");
 const reviews = require("./routes/reviewRoutes");
 const viewRoutes = require("./routes/viewRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
+const bookingController = require("./controller/bookingController");
 const { Server } = require("http");
 
 //Start express app
@@ -40,9 +41,15 @@ app.use(cors());
 // app.use(cors({
 //   origin:'https://www.natours.com' //front end origin
 // }))
-app.options('*',cors());
+app.options("*", cors());
+//STRIPE WEBHOOK CHECKOUT
+app.post(
+  "webhook-checkout",
+  bodyParser.raw({ type: "application/json" }),
+  bookingController.webhookCheckout
+);
 // Body parse, reading data from Body into req.body
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));
 app.use(cookieParser());
