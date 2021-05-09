@@ -20,12 +20,12 @@ const createAndSendToken = (user, statusCode, res,req) => {
       Date.now() + process.env.COOKIE_EXPIRES * 24 * 60 * 60 * 1000
     ),
     httpOnly: true,
-    secure: req.secure || req.headers("x-forwarded-proto") === "https",
+    // secure: req.secure || req.headers("x-forwarded-proto") === "https",
   };
 
   // if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
-  // if (req.secure || req.headers("x-forwarded-proto") === "https")
-  //   cookieOptions.secure = true;
+  if (req.secure || req.header("x-forwarded-proto") === "https")
+    cookieOptions.secure = true;
 
   res.cookie("jwt", token, cookieOptions);
   //remove password from output;
